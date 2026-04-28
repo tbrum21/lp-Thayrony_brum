@@ -82,9 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   form.addEventListener('submit', e => {
     e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    const phoneNumber = '5534992264329';
+    const text = `Olá, meu nome é *${name}*.\nMeu e-mail é *${email}*.\n\n${message}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(whatsappUrl, '_blank');
+
     const btn = form.querySelector('button[type="submit"]');
     const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Mensagem enviada!';
+    btn.innerHTML = '✓ Redirecionando...';
     btn.style.pointerEvents = 'none'; btn.style.opacity = '0.7';
     setTimeout(() => {
       btn.innerHTML = orig;
